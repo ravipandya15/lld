@@ -1,0 +1,18 @@
+<company>
+    <department name="Engineering">
+        <employee>
+            <name>Ravi</name>
+            <age>30</age>
+        </employee>
+        <employee>
+            <name>John</name>
+            <age>35</age>
+        </employee>
+    </department>
+
+    <department name="Sales">
+        <employee>
+            <name>David</name>
+        </employee>
+    </department>
+</company>

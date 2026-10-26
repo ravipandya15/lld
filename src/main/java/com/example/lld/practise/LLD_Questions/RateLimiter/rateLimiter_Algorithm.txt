@@ -1,0 +1,42 @@
+1. Fixed window counter
+- Check current time - windowStartTime >= windowTime
+    reset counter to 0.
+- check if counter < maxRequest
+    allow
+- else reject
+- Allow unexpectedly large burst at window boundaries.
+
+
+2. Sliding window log
+- Store timestamp in dequeue (Only store allowed request timestamp)
+- remove timestamp from start if they are out of rolling window
+- if dequeue size < maxRequest
+    allow
+- else reject
+
+3. Sliding window counter (probabilistic) - aka Weighted sliding window counter
+- Two counter is needed. 1. for current window count and 2. for previous window count.
+- Limit = 100 requests per minute.
+- Current window = 12:01–12:02.
+- Current time = 12:01:15.
+- 20 requests occurred in the current window.
+- 85 requests occurred in the previous window.
+The current window is 25% elapsed, so 75% of the previous window overlaps the last 60 seconds.
+Estimated count:
+
+Count = current Count + Previous count (1 - elapsed time)
+       = 20 + 85(1- 0.25)
+       = 20 + 63.75
+       = 83.75 < 100 so allowed else reject
+
+4. Leaky bucket
+    Blocking queue
+
+5. Token bucket
+- Use Atomic Integer and the difference wrt Fixed Window counter is RefreshToken()
+- per second 100 requests are allowed. so current window started at 12:00:01 and new request comes at 12:00:02
+so I will first check the difference between time and if it's > window time then add refreshed token configured per second with max cap of limit.
+Use compareAndSet(count, count - 1) -> for concurrent request
+
+- Allow max bucket size ( controlled size ) burst traffic.
+
