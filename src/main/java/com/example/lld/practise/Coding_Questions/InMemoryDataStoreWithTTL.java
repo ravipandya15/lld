@@ -99,6 +99,11 @@ class DataStore {
             if (map.containsKey(expiredKey) && map.get(expiredKey).expiryTime <= currentTime) {
                 map.remove(expiredKey);
             }
+
+            //or can also remove when expiryTime is matched with heap
+            if (map.containsKey(expiredKey) && map.get(expiredKey).expiryTime == minHeap.peek().expiryTime) {
+                map.remove(expiredKey);
+            }
             minHeap.poll();
         }
     }
