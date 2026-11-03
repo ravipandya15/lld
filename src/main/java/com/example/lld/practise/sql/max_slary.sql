@@ -1,10 +1,12 @@
 --To get the 3rd highest salary from an employee table, you can use multiple approaches.
+-- never used rank. rank might be function. use rnk
 select salary
 from (
-select salary, DENSE_RANK() over (order by salary desc) as rank
+select salary, DENSE_RANK() over (order by salary desc) as rnk
 from employees
 ) as temp
-where rank = 3;
+where rnk = 3
+limit 1
 ----------------------------------
 
 -- MySQL
