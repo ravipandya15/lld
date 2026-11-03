@@ -2,7 +2,31 @@ package com.example.lld.practise.MultiThreading.ConcurrencyDataStructures;
 
 import java.util.*;
 import java.util.concurrent.*;
+class Pair {
+    int x;
+    int y;
 
+    public Pair(int x, int y) {
+        this.x  = x;
+        this.y = y;
+
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (obj == null || this.getClass() != obj.getClass()) return false;
+        Pair pair = (Pair)obj;
+        return this.x == pair.x && this.y == pair.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.x, this.y);
+    }
+
+
+}
 public class DataStructures {
     public static void main(String[] args) {
 
@@ -86,6 +110,20 @@ public class DataStructures {
 
             map1.merge(c, 1,(a, b) -> a * b);
         }
+
+        LinkedHashSet<Pair> snakes = new LinkedHashSet<>();
+
+        snakes.add(new Pair(0,0));
+        snakes.add(new Pair(0,1));
+        snakes.add(new Pair(0,2));
+        snakes.add(new Pair(1,2));
+
+        Pair last = snakes.getLast();
+
+        Pair first = snakes.getFirst();
+
+        System.out.println("First: " + first.x + ":" + first.y);
+        System.out.println("Last: " + last.x + ":" + last.y);
     }
 
     /**
