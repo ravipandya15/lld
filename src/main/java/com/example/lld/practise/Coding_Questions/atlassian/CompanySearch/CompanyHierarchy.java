@@ -1,4 +1,4 @@
-package com.example.lld.practise.CompanySearch;
+package com.example.lld.practise.Coding_Questions.atlassian.CompanySearch;
 
 
 import java.util.*;
@@ -100,6 +100,11 @@ public class CompanyHierarchy {
             // Preserve the deepest department found below.
             if (answer == null && childResult.department != null) {
                 answer = childResult.department;
+            }
+
+            // can I optimize it? like below? If we already find the result they why we need to compute other childs?
+            if (childResult.department != null) {
+                return new Result(childResult.employeeCount, childResult.department);
             }
         }
 

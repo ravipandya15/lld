@@ -13,7 +13,7 @@ public class InMemoryDataStoreWithTTL {
         DataStore ds = new DataStore(3);
     }
 }
-
+// You can use LocalTime as well. LocalTime.of("23", "00");
 class Data {
     int key;
     String value;
@@ -48,6 +48,7 @@ class DataStore {
         }
         long currentTime = System.currentTimeMillis();
         if (map.containsKey(key)) {
+            // if question asks that key is expired and need to do nothing then add check.
             Data updatedData = new Data(key, value, currentTime + expiry);
             map.put(key, updatedData);
             minHeap.add(updatedData);

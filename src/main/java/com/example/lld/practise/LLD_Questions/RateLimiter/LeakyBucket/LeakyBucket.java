@@ -17,11 +17,18 @@ public class LeakyBucket implements RateLimiter {
     public boolean grantAccess() {// here if requirement is like, per second 5 request should be allowed and not more than that, so
         // should have LinkedBlockingQueue<>(5);
         // refreshCapacity() method, where I will compare currentTime with lastUpdatedTime. If it's > 0 then re initialize capacity as 5 again. otherwise BAU.
-        if (this.queue.remainingCapacity() > 0) {
-            this.queue.add(1);
-            return true;
-        }
-        return false;
+        // I think refresh bucket should not be part of leaky bucket algorithm.
+//        if (this.queue.remainingCapacity() > 0) { // this is not atomic operation, it's standard check then act.
+//            this.queue.add(1);
+//            return true;
+//        }
+
+        // use offer - as it's atomic and internally performs
+//        Is there capacity?
+//    ↓
+//        If yes → insert element
+//        If no  → return false
+        return this.queue.offer(1); // offer threadId
     }
 
     public void removeRequest() {
@@ -31,6 +38,9 @@ public class LeakyBucket implements RateLimiter {
 
         ScheduledExecutorService worker =
                 Executors.newSingleThreadScheduledExecutor();
+
+//        ScheduledExecutorService scheduler =
+//                Executors.newScheduledThreadPool(1);
 
         // Remove one request every 500 milliseconds
         worker.scheduleAtFixedRate(() -> {
