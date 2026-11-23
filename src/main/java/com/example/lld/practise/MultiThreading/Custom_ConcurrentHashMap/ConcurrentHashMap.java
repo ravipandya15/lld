@@ -36,6 +36,7 @@ class CustomConcurrentHashMap<K, V> {
     }
 
     private int index(Object key) {
+        //Objects.hash(key);
         int hash = key.hashCode();
         hash ^= hash >>> 16;
         return (hash & 0x7fffffff) % capacity;

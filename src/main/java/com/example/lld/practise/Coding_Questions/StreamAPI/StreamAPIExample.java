@@ -6,6 +6,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class StreamAPIExample {
 
@@ -225,10 +226,16 @@ public class StreamAPIExample {
 
     private static void EPAMQuestions() {
 
-//        s1 = "Hello world Hello world Hello world"
-//        s2 = "ello w"
+        String s1 = "Hello world Hello world Hello world";
+        String s2 = "ello w";
 //
 //        count how many times s2 comes in s1 using stream API
+
+        long count = IntStream.range(0, s1.length() - s2.length() + 1)
+                .filter(i -> s1.startsWith(s2, i))
+                .count();
+
+        System.out.println("Count: " + count);
 
         Integer[] arr = new Integer [] {2, 10, 7, 15, 4, 9, 11};
 
