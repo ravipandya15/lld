@@ -1,0 +1,8 @@
+2026-11-23 10:15:30 INFO Application started
+2026-11-23 10:15:31 WARN Database connection is slow
+2026-11-23 10:15:32 ERROR Failed to connect to database
+2026-11-23 10:15:33 INFO Request processed successfully
+INVALID LOG RECORD
+2026-11-23 10:15:34 DEBUG Debugging application
+2026-11-23 10:15:35 ERROR NullPointerException occurred
+2026-11-23 10:15:36 TRACE Processing request
