@@ -23,6 +23,8 @@ public class LogParserApp {
     // Parses and validates individual log lines.
     static class LogParser {
 
+        // \\s -> whitespace characters
+        // \\s+ -> more than one whitespace characters
         private static final Pattern LOG_PATTERN = Pattern.compile(
                 "^(\\d{4}-\\d{2}-\\d{2})\\s+" +
                         "(\\d{2}:\\d{2}:\\d{2})\\s+" +
