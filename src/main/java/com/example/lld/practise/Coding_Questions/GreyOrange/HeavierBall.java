@@ -17,6 +17,7 @@ Problem statement: I have n balls. Out of these n-1 balls are with same weight a
  */
 public class HeavierBall {
 
+    // TC -> O(Log3N) -> Log N base 3
     private static int minAttempts(int n) {
         int attempts = 0;
 
@@ -39,6 +40,7 @@ public class HeavierBall {
         }
         return dp[n];
     }
+
     static void main() {
         System.out.println(minAttempts(27)); // 3
         System.out.println(minAttempts(10)); // 3
